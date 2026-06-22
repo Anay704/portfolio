@@ -722,13 +722,16 @@
         <div class="trophy-icon">☁️</div>
         <div class="trophy-year">🏆 2025 PROJECT</div>
         <div class="trophy-title">GOOGLE CLOUD GEOSPATIAL PIPELINE</div>
-        <p class="trophy-desc">End-to-end big-data pipeline on GCP — 2 GB of Wisconsin K-12 school data, Dataform + BigQuery, 72 county polygons joined to 2,000+ school records with &lt;1s/query performance.</p>
+        <p class="trophy-desc" style="font-style:italic;color:#94a3b8;margin-bottom:.6rem;">Turning 2 GB of raw school records into sub-second geospatial analytics on Google Cloud.</p>
+        <p class="trophy-desc">An end-to-end big-data pipeline built entirely on GCP. Spun up a VM, ingested 2 GB of Wisconsin K-12 school data to Cloud Storage, then orchestrated Dataform + BigQuery to build a set of geospatial tables. The core SQL joins 72 Wisconsin county polygons to 2,000+ individual school records, enabling ad-hoc geographic queries — which school districts overlap which counties, proximity analysis, coverage gaps — all returning in under 1 second. Designed so new datasets drop straight into the pipeline without schema changes.</p>
         <div class="trophy-tags">
           <span class="trophy-tag">GCP</span>
           <span class="trophy-tag">BigQuery</span>
           <span class="trophy-tag">Dataform</span>
+          <span class="trophy-tag">Cloud Storage</span>
           <span class="trophy-tag">SQL</span>
           <span class="trophy-tag">Geospatial</span>
+          <span class="trophy-tag">Python</span>
         </div>
       </div>
 
@@ -736,12 +739,15 @@
         <div class="trophy-icon">🌊</div>
         <div class="trophy-year">🏆 2025 PROJECT</div>
         <div class="trophy-title">BIG DATA STREAMING PIPELINE</div>
-        <p class="trophy-desc">Dockerized MySQL → Kafka → HDFS pipeline in Python. Kafka producer serialized weather data as gRPC protobufs across a 4-partition topic; consumer wrote Parquet to HDFS with atomic checkpointing.</p>
+        <p class="trophy-desc" style="font-style:italic;color:#94a3b8;margin-bottom:.6rem;">Fault-tolerant, exactly-once streaming from MySQL to HDFS — fully Dockerized.</p>
+        <p class="trophy-desc">A production-grade streaming pipeline built with the MySQL → Kafka → HDFS stack, containerized end-to-end with Docker. A Kafka producer serializes live weather data as gRPC protobufs and publishes across a 4-partition topic for parallel throughput. A manually-assigned consumer deserializes each message and writes columnar Parquet files to HDFS with atomic checkpointing — guaranteeing exactly-once delivery even across restarts. The checkpoint mechanism means the pipeline can be killed mid-stream and resume from exactly where it left off, with no duplicate or missing records.</p>
         <div class="trophy-tags">
           <span class="trophy-tag">Kafka</span>
           <span class="trophy-tag">Docker</span>
           <span class="trophy-tag">HDFS</span>
           <span class="trophy-tag">gRPC</span>
+          <span class="trophy-tag">Protobuf</span>
+          <span class="trophy-tag">Parquet</span>
           <span class="trophy-tag">MySQL</span>
           <span class="trophy-tag">Python</span>
         </div>
@@ -751,13 +757,16 @@
         <div class="trophy-icon">🍽️</div>
         <div class="trophy-year">🏆 2025 PROJECT</div>
         <div class="trophy-title">SEEFOOD ANDROID APP</div>
-        <p class="trophy-desc">Full-stack Android app (Kotlin + Jetpack Compose) that generates recipes from scanned or entered ingredients by integrating the OpenAI API, built on MVVM architecture with real-time StateFlow.</p>
+        <p class="trophy-desc" style="font-style:italic;color:#94a3b8;margin-bottom:.6rem;">Point your camera at your fridge — get a recipe back in seconds.</p>
+        <p class="trophy-desc">A full-stack Android app built in Kotlin with Jetpack Compose that turns whatever ingredients you have on hand into step-by-step recipes. Scan items with your camera or type them in manually; the app hits the OpenAI API and streams a tailored recipe back in real time. Built on MVVM architecture with StateFlow for reactive state management — the UI stays in sync with the data layer without callbacks or manual refresh. Clean separation of concerns means the API layer, business logic, and UI are independently testable and swappable.</p>
         <div class="trophy-tags">
           <span class="trophy-tag">Kotlin</span>
           <span class="trophy-tag">Jetpack Compose</span>
           <span class="trophy-tag">OpenAI API</span>
           <span class="trophy-tag">MVVM</span>
           <span class="trophy-tag">StateFlow</span>
+          <span class="trophy-tag">Android</span>
+          <span class="trophy-tag">Camera API</span>
         </div>
       </div>
 
