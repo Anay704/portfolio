@@ -79,6 +79,16 @@
       box-shadow: 0 0 20px rgba(204,255,0,.3);
     }
     .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(204,255,0,.5); }
+    .nav-actions { display: flex; align-items: center; gap: .6rem; }
+    .nav-resume {
+      font-family: 'Bebas Neue', sans-serif; letter-spacing: .12em; font-size: .9rem;
+      padding: .5rem 1.1rem; border-radius: 6px;
+      border: 1px solid var(--border); color: var(--text);
+      text-decoration: none; transition: border-color .2s, color .2s;
+      display: inline-flex; align-items: center; gap: .4rem;
+    }
+    .nav-resume:hover { border-color: var(--lime); color: var(--lime); }
+    .nav-resume svg { width: 13px; height: 13px; }
 
     /* ─── HERO ─── */
     #hero {
@@ -385,6 +395,47 @@
     }
     .activity-desc { font-size: .87rem; color: var(--muted); line-height: 1.7; }
 
+    /* ─── SCOUTING REPORT (Resume) ─── */
+    #scouting { background: var(--surface); }
+    .scout-wrap {
+      display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+      gap: 3rem; align-items: center; max-width: 900px;
+    }
+    .scout-preview {
+      display: block; position: relative; border-radius: 10px; overflow: hidden;
+      border: 1px solid var(--dim); background: #fff;
+      box-shadow: 0 30px 70px rgba(0,0,0,.55);
+      transition: transform .15s, box-shadow .15s;
+      transform-style: preserve-3d;
+    }
+    .scout-preview img { display: block; width: 100%; height: auto; }
+    .scout-preview::after {
+      content: 'OPEN FULL REPORT ↗'; position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: .16em;
+      color: var(--lime); background: rgba(6,8,15,.72);
+      opacity: 0; transition: opacity .2s;
+    }
+    .scout-preview:hover::after, .scout-preview:focus-visible::after { opacity: 1; }
+    .scout-stamp {
+      display: inline-block; font-family: 'Bebas Neue', sans-serif; font-size: .8rem; letter-spacing: .14em;
+      color: var(--gold); border: 1px solid rgba(255,201,60,.3); background: var(--gold-glow);
+      padding: .3rem .8rem; border-radius: 4px; margin-bottom: 1.25rem;
+    }
+    .scout-headline {
+      font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.6rem, 3vw, 2.2rem);
+      letter-spacing: .04em; line-height: 1.05; margin-bottom: 1rem;
+    }
+    .scout-copy { color: var(--muted); font-size: .92rem; line-height: 1.75; margin-bottom: 1.5rem; }
+    .scout-list { list-style: none; margin-bottom: 2rem; }
+    .scout-list li {
+      display: flex; justify-content: space-between; gap: 1rem;
+      padding: .6rem 0; border-bottom: 1px solid var(--dim); font-size: .85rem;
+    }
+    .scout-list li span:first-child { color: var(--muted); }
+    .scout-list li span:last-child { color: var(--text); font-weight: 600; text-align: right; }
+    .scout-actions { display: flex; flex-wrap: wrap; gap: .9rem; }
+
     /* ─── RECRUIT (Contact) ─── */
     #recruit {
       background: var(--surface); text-align: center;
@@ -473,9 +524,16 @@
     <li><a href="#record">Season Record</a></li>
     <li><a href="#trophies">Trophies</a></li>
     <li><a href="#academy">Academy</a></li>
+    <li><a href="#scouting">Resume</a></li>
     <li><a href="#recruit">Recruit</a></li>
   </ul>
-  <a href="mailto:anaybaheti7@gmail.com" class="nav-cta magnetic">RECRUIT ME</a>
+  <div class="nav-actions">
+    <a href="Anay-Baheti-Resume.pdf" target="_blank" rel="noopener" class="nav-resume">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+      RESUME
+    </a>
+    <a href="mailto:anaybaheti7@gmail.com" class="nav-cta magnetic">RECRUIT ME</a>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -518,7 +576,7 @@
 
     <div class="hero-cta">
       <a href="#record" class="btn-primary magnetic">VIEW SEASON RECORD</a>
-      <a href="#recruit" class="btn-outline magnetic">GET IN TOUCH</a>
+      <a href="Anay-Baheti-Resume.pdf" target="_blank" rel="noopener" class="btn-outline magnetic">VIEW RESUME ↗</a>
     </div>
   </div>
 </section>
@@ -751,56 +809,47 @@
     <div class="section-label reveal">TROPHY CABINET</div>
     <div class="section-title reveal">FEATURED <span>PROJECTS</span></div>
     <div class="trophies-grid">
-
       <div class="trophy-card tilt-card reveal">
-        <div class="trophy-icon">☁️</div>
-        <div class="trophy-year">🏆 2025 PROJECT</div>
-        <div class="trophy-title">GOOGLE CLOUD GEOSPATIAL PIPELINE</div>
-        <p class="trophy-desc" style="font-style:italic;color:#94a3b8;margin-bottom:.6rem;">Turning 2 GB of raw school records into sub-second geospatial analytics on Google Cloud.</p>
-        <p class="trophy-desc">An end-to-end big-data pipeline built entirely on GCP. Spun up a VM, ingested 2 GB of Wisconsin K-12 school data to Cloud Storage, then orchestrated Dataform + BigQuery to build a set of geospatial tables. The core SQL joins 72 Wisconsin county polygons to 2,000+ individual school records, enabling ad-hoc geographic queries — which school districts overlap which counties, proximity analysis, coverage gaps — all returning in under 1 second. Designed so new datasets drop straight into the pipeline without schema changes.</p>
+        <div class="trophy-icon">🤖</div>
+        <div class="trophy-year">🏆 2026 PROJECT</div>
+        <div class="trophy-title">GENERAL AGENTIC TOOL-ROUTER</div>
+        <p class="trophy-desc" style="font-style:italic;color:#94a3b8;margin-bottom:.6rem;">A chat agent that figures out which tools it needs, then chains them to get real work done across your apps.</p>
+        <p class="trophy-desc">A general AI agent you can chat with to take real actions across Google Workspace (Gmail, Calendar, Drive, Sheets) and GitHub. Instead of hardcoding integrations, the agent discovers and selects the right tools at runtime from a catalog of 1,300+, handling open-ended requests and extending to new apps without code changes. A server-side bulk pipeline paginates large datasets with batched, 5-way concurrent LLM extraction — it turned all 633 issues from a GitHub repo and a folder of resume PDFs into Google Sheets in ~20 seconds, keeping the chat model's context flat as the dataset scaled. Adding a new toolkit like Slack or Linear is a one-line config change. Ships with per-user OAuth, streaming chat, and a live view of the agent's tool calls as it reasons and acts.</p>
         <div class="trophy-tags">
-          <span class="trophy-tag">GCP</span>
-          <span class="trophy-tag">BigQuery</span>
-          <span class="trophy-tag">Dataform</span>
-          <span class="trophy-tag">Cloud Storage</span>
-          <span class="trophy-tag">SQL</span>
-          <span class="trophy-tag">Geospatial</span>
+          <span class="trophy-tag">TypeScript</span>
           <span class="trophy-tag">Python</span>
+          <span class="trophy-tag">Bun</span>
+          <span class="trophy-tag">Claude API</span>
+          <span class="trophy-tag">Vercel AI SDK</span>
+          <span class="trophy-tag">Composio</span>
+          <span class="trophy-tag">React</span>
+          <span class="trophy-tag">Vite</span>
+          <span class="trophy-tag">OAuth</span>
+          <span class="trophy-tag">Tool Routing</span>
         </div>
       </div>
 
       <div class="trophy-card tilt-card reveal">
-        <div class="trophy-icon">🌊</div>
-        <div class="trophy-year">🏆 2025 PROJECT</div>
-        <div class="trophy-title">BIG DATA STREAMING PIPELINE</div>
-        <p class="trophy-desc" style="font-style:italic;color:#94a3b8;margin-bottom:.6rem;">Fault-tolerant, exactly-once streaming from MySQL to HDFS — fully Dockerized.</p>
-        <p class="trophy-desc">A production-grade streaming pipeline built with the MySQL → Kafka → HDFS stack, containerized end-to-end with Docker. A Kafka producer serializes live weather data as gRPC protobufs and publishes across a 4-partition topic for parallel throughput. A manually-assigned consumer deserializes each message and writes columnar Parquet files to HDFS with atomic checkpointing — guaranteeing exactly-once delivery even across restarts. The checkpoint mechanism means the pipeline can be killed mid-stream and resume from exactly where it left off, with no duplicate or missing records.</p>
+        <div class="trophy-icon">📈</div>
+        <div class="trophy-year">🏆 2026 PROJECT</div>
+        <div class="trophy-title">MARKET PULSE</div>
+        <p class="trophy-desc" style="font-style:italic;color:#94a3b8;margin-bottom:.6rem;">The scouting report for any ticker on the board.</p>
+        <p class="trophy-desc">A single-page AI terminal that fuses live data from six sources — yFinance, NewsAPI, Kalshi, Polymarket, Google News, and Anthropic Claude — into one verdict. A Bayesian engine blends options flow, prediction-market odds, news sentiment, and price momentum into a 0–100 probability score; Claude writes the three-sentence analyst call on top. Drop in a chart screenshot and Claude Vision reads the trend, pattern, support, and resistance, then pairs that with fundamentals and your position size to call a STRONG BUY through STRONG SELL with a stop loss, target, and risk/reward. A Kalshi tab surfaces real-time arbitrage edges across 50 live prediction markets. A floating AI chat answers follow-up questions using the loaded ticker's full analysis as context. Supports 147 symbols spanning stocks, ETFs, and crypto. Built for retail investors drowning in browser tabs.</p>
+        <a href="https://github.com/Anay704/market-pulse" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;margin-bottom:1rem;font-size:.8rem;color:var(--lime);text-decoration:none;font-weight:600;letter-spacing:.04em;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          github.com/Anay704/market-pulse
+        </a>
         <div class="trophy-tags">
-          <span class="trophy-tag">Kafka</span>
-          <span class="trophy-tag">Docker</span>
-          <span class="trophy-tag">HDFS</span>
-          <span class="trophy-tag">gRPC</span>
-          <span class="trophy-tag">Protobuf</span>
-          <span class="trophy-tag">Parquet</span>
-          <span class="trophy-tag">MySQL</span>
+          <span class="trophy-tag">Flask</span>
           <span class="trophy-tag">Python</span>
-        </div>
-      </div>
-
-      <div class="trophy-card tilt-card reveal">
-        <div class="trophy-icon">🍽️</div>
-        <div class="trophy-year">🏆 2025 PROJECT</div>
-        <div class="trophy-title">SEEFOOD ANDROID APP</div>
-        <p class="trophy-desc" style="font-style:italic;color:#94a3b8;margin-bottom:.6rem;">Point your camera at your fridge — get a recipe back in seconds.</p>
-        <p class="trophy-desc">A full-stack Android app built in Kotlin with Jetpack Compose that turns whatever ingredients you have on hand into step-by-step recipes. Scan items with your camera or type them in manually; the app hits the OpenAI API and streams a tailored recipe back in real time. Built on MVVM architecture with StateFlow for reactive state management — the UI stays in sync with the data layer without callbacks or manual refresh. Clean separation of concerns means the API layer, business logic, and UI are independently testable and swappable.</p>
-        <div class="trophy-tags">
-          <span class="trophy-tag">Kotlin</span>
-          <span class="trophy-tag">Jetpack Compose</span>
-          <span class="trophy-tag">OpenAI API</span>
-          <span class="trophy-tag">MVVM</span>
-          <span class="trophy-tag">StateFlow</span>
-          <span class="trophy-tag">Android</span>
-          <span class="trophy-tag">Camera API</span>
+          <span class="trophy-tag">Claude API</span>
+          <span class="trophy-tag">Claude Vision</span>
+          <span class="trophy-tag">yFinance</span>
+          <span class="trophy-tag">Kalshi</span>
+          <span class="trophy-tag">Polymarket</span>
+          <span class="trophy-tag">NewsAPI</span>
+          <span class="trophy-tag">Chart.js</span>
+          <span class="trophy-tag">Vanilla JS SPA</span>
         </div>
       </div>
 
@@ -863,26 +912,36 @@
       </div>
 
       <div class="trophy-card tilt-card reveal">
-        <div class="trophy-icon">📈</div>
-        <div class="trophy-year">🏆 2026 PROJECT</div>
-        <div class="trophy-title">MARKET PULSE</div>
-        <p class="trophy-desc" style="font-style:italic;color:#94a3b8;margin-bottom:.6rem;">The scouting report for any ticker on the board.</p>
-        <p class="trophy-desc">A single-page AI terminal that fuses live data from six sources — yFinance, NewsAPI, Kalshi, Polymarket, Google News, and Anthropic Claude — into one verdict. A Bayesian engine blends options flow, prediction-market odds, news sentiment, and price momentum into a 0–100 probability score; Claude writes the three-sentence analyst call on top. Drop in a chart screenshot and Claude Vision reads the trend, pattern, support, and resistance, then pairs that with fundamentals and your position size to call a STRONG BUY through STRONG SELL with a stop loss, target, and risk/reward. A Kalshi tab surfaces real-time arbitrage edges across 50 live prediction markets. A floating AI chat answers follow-up questions using the loaded ticker's full analysis as context. Supports 147 symbols spanning stocks, ETFs, and crypto. Built for retail investors drowning in browser tabs.</p>
-        <a href="https://github.com/Anay704/market-pulse" target="_blank" style="display:inline-flex;align-items:center;gap:.4rem;margin-bottom:1rem;font-size:.8rem;color:var(--lime);text-decoration:none;font-weight:600;letter-spacing:.04em;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-          github.com/Anay704/market-pulse
-        </a>
+        <div class="trophy-icon">☁️</div>
+        <div class="trophy-year">🏆 2025 PROJECT</div>
+        <div class="trophy-title">GOOGLE CLOUD GEOSPATIAL PIPELINE</div>
+        <p class="trophy-desc" style="font-style:italic;color:#94a3b8;margin-bottom:.6rem;">Turning 2 GB of raw school records into sub-second geospatial analytics on Google Cloud.</p>
+        <p class="trophy-desc">An end-to-end big-data pipeline built entirely on GCP. Spun up a VM, ingested 2 GB of Wisconsin K-12 school data to Cloud Storage, then orchestrated Dataform + BigQuery to build a set of geospatial tables. The core SQL joins 72 Wisconsin county polygons to 2,000+ individual school records, enabling ad-hoc geographic queries — which school districts overlap which counties, proximity analysis, coverage gaps — all returning in under 1 second. Designed so new datasets drop straight into the pipeline without schema changes.</p>
         <div class="trophy-tags">
-          <span class="trophy-tag">Flask</span>
+          <span class="trophy-tag">GCP</span>
+          <span class="trophy-tag">BigQuery</span>
+          <span class="trophy-tag">Dataform</span>
+          <span class="trophy-tag">Cloud Storage</span>
+          <span class="trophy-tag">SQL</span>
+          <span class="trophy-tag">Geospatial</span>
           <span class="trophy-tag">Python</span>
-          <span class="trophy-tag">Claude API</span>
-          <span class="trophy-tag">Claude Vision</span>
-          <span class="trophy-tag">yFinance</span>
-          <span class="trophy-tag">Kalshi</span>
-          <span class="trophy-tag">Polymarket</span>
-          <span class="trophy-tag">NewsAPI</span>
-          <span class="trophy-tag">Chart.js</span>
-          <span class="trophy-tag">Vanilla JS SPA</span>
+        </div>
+      </div>
+
+      <div class="trophy-card tilt-card reveal">
+        <div class="trophy-icon">🍽️</div>
+        <div class="trophy-year">🏆 2025 PROJECT</div>
+        <div class="trophy-title">SEEFOOD ANDROID APP</div>
+        <p class="trophy-desc" style="font-style:italic;color:#94a3b8;margin-bottom:.6rem;">Point your camera at your fridge — get a recipe back in seconds.</p>
+        <p class="trophy-desc">A full-stack Android app built in Kotlin with Jetpack Compose that turns whatever ingredients you have on hand into step-by-step recipes. Scan items with your camera or type them in manually; the app hits the OpenAI API and streams a tailored recipe back in real time. Built on MVVM architecture with StateFlow for reactive state management — the UI stays in sync with the data layer without callbacks or manual refresh. Clean separation of concerns means the API layer, business logic, and UI are independently testable and swappable.</p>
+        <div class="trophy-tags">
+          <span class="trophy-tag">Kotlin</span>
+          <span class="trophy-tag">Jetpack Compose</span>
+          <span class="trophy-tag">OpenAI API</span>
+          <span class="trophy-tag">MVVM</span>
+          <span class="trophy-tag">StateFlow</span>
+          <span class="trophy-tag">Android</span>
+          <span class="trophy-tag">Camera API</span>
         </div>
       </div>
 
@@ -967,6 +1026,34 @@
           <span class="activity-date">Jan 2024 – May 2025</span>
         </div>
         <p class="activity-desc">Conducted startup due diligence using PitchBook and deal screening frameworks under fund manager guidance. Assessed market positioning, traction, and competitive dynamics across early-stage companies to build competency in startup valuation and investment analysis.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCOUTING REPORT -->
+<section id="scouting">
+  <div style="max-width:900px;margin:0 auto">
+    <div class="section-label reveal">SCOUTING REPORT</div>
+    <div class="section-title reveal">THE FULL <span>RESUME</span></div>
+    <div class="scout-wrap">
+      <a href="Anay-Baheti-Resume.pdf" target="_blank" rel="noopener" class="scout-preview tilt-card reveal" aria-label="Open Anay Baheti's resume (PDF)">
+        <img src="resume-preview.jpg" width="900" height="1166" loading="lazy" alt="Preview of Anay Baheti's one-page resume" />
+      </a>
+      <div class="reveal">
+        <div class="scout-stamp">UPDATED · SEP 2026</div>
+        <div class="scout-headline">Everything on one page</div>
+        <p class="scout-copy">Education, experience, projects, and the full skill set, formatted for your ATS and your hiring manager.</p>
+        <ul class="scout-list">
+          <li><span>Position</span><span>SWE · AI · FDE · Full-Stack</span></li>
+          <li><span>Education</span><span>UW-Madison · CS + DS · 3.84</span></li>
+          <li><span>Experience</span><span>Amazon · Builty · Beyond Key · InfoBeans</span></li>
+          <li><span>Based in</span><span>San Francisco, CA</span></li>
+        </ul>
+        <div class="scout-actions">
+          <a href="Anay-Baheti-Resume.pdf" download="Anay-Baheti-Resume.pdf" class="btn-primary magnetic">DOWNLOAD PDF ↓</a>
+          <a href="Anay-Baheti-Resume.pdf" target="_blank" rel="noopener" class="btn-outline magnetic">OPEN IN NEW TAB ↗</a>
+        </div>
       </div>
     </div>
   </div>
